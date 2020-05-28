@@ -1,19 +1,5 @@
 // // if i press a button, I want the data to be fetched,
 // // I will expand it to be in the form of questions and answers.
-// let fetchedData;
-// async function getData () {
-//     const res = await fetch("https://opentdb.com/api.php?amount=10");
-//     let json = await res.json();
-//     // console.log(json);
-//     return json;
-// };
-
-// // let data = async() => {
-// //     fetchedData = await getData()
-// //     return fetchedData;
-// // };
-
-// console.log(fetchedData);
 
 class Quiz {
     constructor(data){
@@ -51,7 +37,7 @@ class Quiz {
         }
         return arrayToShuffle;
     };
-
+    
 }   
 
 async function getData() {
@@ -65,17 +51,82 @@ async function getData() {
 }
 
 async function useData() {
+    
     let data = await getData();
     let quiz = new Quiz(data);
-
-
+    
+    quiz.questionSets.forEach(set => {
+        createCard(set.question,set.allAnswers,set.correct_answer);
+    })
     console.log(quiz);
 }
 
 
 let fetchData = document.querySelector('button');
+let game = document.getElementById('game');
+let cards = document.getElementById('cards');
+
+function createCard (question,answers,correct_answer) {
+    let card = document.createElement('div');
+    card.className = 'card';
+
+    let questionDiv = document.createElement('div');
+    questionDiv.className = 'question';
+
+    // let questionText = document.createTextNode(question);
+    // questionDiv.appendChild(questionText);
+
+    questionDiv.innerHTML = question;
+
+    let answersDiv = document.createElement('div');
+    answersDiv.className = "answers";
+
+    for(answer of answers){
+        let answerDiv = document.createElement('div');
+        answerDiv.className = 'answer';
+       
+        answerDiv.innerHTML = answer;
+        
+        
+        answersDiv.appendChild(answerDiv);
+    };
+    
+    let checkCorrectAnswer =  (e)=>{
+        if(e.target.className ==='answer'){
+            if(e.target.innerHTML === correct_answer){
+                console.log('picked correct answer',answersDiv);
+                e.target.style.backgroundColor = "green";
+                answersDiv.removeEventListener('click',checkCorrectAnswer);
+            }else if(e.target.innerHTML !== correct_answer) {
+                console.log('picked wrong answer');
+                e.target.style.backgroundColor = "red";
+                answersDiv.removeEventListener('click',checkCorrectAnswer);
+                let elements = answersDiv.getElementsByClassName("answer");
+                Array.from(elements).forEach(el => {
+                    if(el.innerHTML === correct_answer){
+                        el.style.backgroundColor = "green";
+                    }
+                    
+                })
+            }
+        }else{
+            return;
+        }
+    };   
+    
+    answersDiv.addEventListener('click',checkCorrectAnswer,false);
+
+    
+
+    card.appendChild(questionDiv);
+    card.appendChild(answersDiv);
+    let cards = document.getElementById('cards');
+    cards.appendChild(card);
+}
 
 fetchData.addEventListener('click',(e)=>{
     useData();
+    // createQuestions();
+});
 
-})
+

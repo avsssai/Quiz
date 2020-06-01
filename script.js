@@ -6,7 +6,6 @@ class Quiz {
         this.data = data;
         this.start = false;
         this.end = false;
-        this.round = 0;
         this.score = 0;
         this.makeQuestionSets();
     };
@@ -37,12 +36,34 @@ class Quiz {
         }
         return arrayToShuffle;
     };
+    clear (){
+        this.data = {};
+    }
+    updateScore(){
+        console.log(this.score);
+    }
     
 }   
 
-async function getData() {
+let score = 0;
+let difficulty = document.getElementById('difficulty');
+let numberOfQuestions = document.getElementById('number-of-questions');
+let category = document.getElementById('category');
+let cards = document.getElementById('cards');
+
+function removeElements (parent,childName){
+    let arrOfChildren = Array.from(parent.getElementsByClassName(childName));
+    for(i=0; i<arrOfChildren.length; i++){
+        parent.removeChild(arrOfChildren[i]);
+    };
+}
+
+async function getData(difficultyOfQuestions,numberOfQuestions,category) {
+if(cards.children.length > 0){
+    removeElements(cards,'card');
+}
   try {
-    let dataFetch = await fetch("https://opentdb.com/api.php?amount=10");
+    let dataFetch = await fetch(`https://opentdb.com/api.php?amount=${numberOfQuestions}&category=${category}&difficulty=${difficultyOfQuestions}`);
     let json = await dataFetch.json();
     return json;
   } catch (error) {
@@ -52,9 +73,20 @@ async function getData() {
 
 async function useData() {
     
-    let data = await getData();
+    let difficultyOfQuestions = getRadioValue('difficulty');
+    let numberOfQ = getRadioValue('number');
+    let categoryOfQuestions = category.options[category.selectedIndex].value;
+    let data = await getData(difficultyOfQuestions,numberOfQ,categoryOfQuestions);
     let quiz = new Quiz(data);
-    
+
+    let scoreDiv = document.getElementById('score');
+    scoreDiv.innerText = `Score : ${score}/${getRadioValue('number')}`;
+
+    if(quiz && quiz.data.results.length > 0){
+        quiz.clear();
+    }
+    console.log(difficultyOfQuestions,numberOfQ,categoryOfQuestions);
+
     quiz.questionSets.forEach(set => {
         createCard(set.question,set.allAnswers,set.correct_answer);
     })
@@ -64,7 +96,21 @@ async function useData() {
 
 let fetchData = document.querySelector('button');
 let game = document.getElementById('game');
-let cards = document.getElementById('cards');
+
+function getRadioValue (name){
+    let radios = document.getElementsByName(name);
+    for(let i=0; i<radios.length; i++){
+        if(radios[i].checked){
+            return radios[i].value;
+        }
+    }
+}
+
+function scoreIncrease() {
+    score += 1;
+    let scoreDiv = document.getElementById('score');
+    scoreDiv.innerText = `Score : ${score}/${getRadioValue('number')}`;
+}
 
 function createCard (question,answers,correct_answer) {
     let card = document.createElement('div');
@@ -97,6 +143,7 @@ function createCard (question,answers,correct_answer) {
                 console.log('picked correct answer',answersDiv);
                 e.target.style.backgroundColor = "green";
                 answersDiv.removeEventListener('click',checkCorrectAnswer);
+                scoreIncrease();
             }else if(e.target.innerHTML !== correct_answer) {
                 console.log('picked wrong answer');
                 e.target.style.backgroundColor = "red";
@@ -116,7 +163,7 @@ function createCard (question,answers,correct_answer) {
     
     answersDiv.addEventListener('click',checkCorrectAnswer,false);
 
-    
+
 
     card.appendChild(questionDiv);
     card.appendChild(answersDiv);
@@ -125,8 +172,9 @@ function createCard (question,answers,correct_answer) {
 }
 
 fetchData.addEventListener('click',(e)=>{
+
     useData();
     // createQuestions();
 });
 
-
+ 

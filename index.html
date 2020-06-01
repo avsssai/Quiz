@@ -13,50 +13,72 @@
     <div id="number-of-questions">
         <label for="questions-amount">Number of questions : </label>
 
-        <input type="radio" value="10">
+        <input type="radio" value="10" name="number" checked>
         <label for="10">10</label>
     
-        <input type="radio" value="15">
+        <input type="radio" value="15" name="number">
         <label for="15">15</label>
     
-        <input type="radio" value="20">
+        <input type="radio" value="20" name="number">
         <label for="20">20</label>
     
-        <label for="custom">Custom number</label>
-        <input type="text" placeholder="custom number" >
     </div>
 
-    <div id="category">
-        
+    <div>
+        <span>Category : </span>
+        <select name="category" id="category">
+            <option value="" selected disabled hidden>Any Category</option>
+            <option value="9">General Knowledge</option>
+            <option value="10">Entertainment: Books</option>
+            <option value="11">Entertainment: Film</option>
+            <option value="12">Entertainment : Music</option>
+            <option value="13">Entertainment : Musicals and Theatres</option>
+            <option value="14">Television</option>
+            <option value="15">Video Games</option>
+            <option value="16">Board Games</option>
+            <option value="17">Science and Nature</option>
+            <option value="18">Science : Computers</option>
+            <option value="19">Science : Mathematics</option>
+            <option value="20">Mythology</option>
+            <option value="21">Sports</option>
+            <option value="22">Geography</option>
+            <option value="23">History</option>
+            <option value="24">Politics</option>
+            <option value="25">Art</option>
+            <option value="26">Celebrities</option>
+            <option value="27">Animals</option>
+            <option value="28">Vehicles</option>
+            <option value="29">Entertainment : Comics</option>
+            <option value="30">Science : Gadgets</option>
+            <option value="32">Entertainment : Japanese Anime and Manga</option>
+            <option value="31">Entertainment : Cartoon & Animations</option>
+
+
+        </select>
     </div>
    
     <div id="difficulty">
         <label for="diffuculty">Difficulty : </label>
-        <input type="radio" value="easy">
+        <input type="radio" value="easy" name='difficulty' checked>
         <label for="easy">Easy</label>
     
-        <input type="radio" value="medium">
+        <input type="radio" value="medium" name='difficulty'>
         <label for="medium">Medium</label>
     
-        <input type="radio" value="hard">
+        <input type="radio" value="hard" name='difficulty'>
         <label for="hard">Hard</label>
+
+        <input type="radio" value="any" name='difficulty'>
+        <label for="hard">Any</label>
+
     </div>
     <button>
-        Get Data
+        New Game
     </button>
 
     <div id="game">
-
+        <div id="score"></div>
         <div id="cards">    
-            <!-- <div class="card">
-                <div class="question">Question 1</div>
-                <div class="answers">
-                    <div class="answer">answer 1</div>
-                    <div class="answer">answer 2</div>
-                    <div class="answer">answer 3</div>
-                    <div class="answer">answer 4</div>
-                </div>
-            </div> -->
         </div>
         
     </div>

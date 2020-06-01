@@ -1,5 +1,7 @@
 // // if i press a button, I want the data to be fetched,
 // // I will expand it to be in the form of questions and answers.
+let cardsArr = [];
+let presentCardNumber = 0;
 
 class Quiz {
     constructor(data){
@@ -89,7 +91,8 @@ async function useData() {
 
     quiz.questionSets.forEach(set => {
         createCard(set.question,set.allAnswers,set.correct_answer);
-    })
+    });
+    displayCards(cardsArr,presentCardNumber);
     console.log(quiz);
 }
 
@@ -111,6 +114,7 @@ function scoreIncrease() {
     let scoreDiv = document.getElementById('score');
     scoreDiv.innerText = `Score : ${score}/${getRadioValue('number')}`;
 }
+
 
 function createCard (question,answers,correct_answer) {
     let card = document.createElement('div');
@@ -167,15 +171,46 @@ function createCard (question,answers,correct_answer) {
 
     card.appendChild(questionDiv);
     card.appendChild(answersDiv);
-    let cards = document.getElementById('cards');
-    cards.appendChild(card);
+    // let cards = document.getElementById('cards');
+    // cards.appendChild(card);
+    cardsArr.push(card);
+    // console.log(cardsArr);
+    // displayCards(cardsArr);
 }
 
-fetchData.addEventListener('click',(e)=>{
+let displayCards = (cardsArr,presentCardNumber) => {
+    let cardToDisplay = cardsArr[presentCardNumber];
+    cards.appendChild(cardToDisplay);
+    console.log(cardsArr);
+};
 
+let nextCard = () => {
+    if(presentCardNumber < cardsArr.length - 1){
+        cards.removeChild(cardsArr[presentCardNumber]);
+        presentCardNumber += 1;
+        console.log(presentCardNumber);
+        displayCards(cardsArr,presentCardNumber);
+    }else{
+        return;
+    }
+}
+
+let previousCard = () => {
+    if(presentCardNumber > 0){
+        cards.removeChild(cardsArr[presentCardNumber]);
+        presentCardNumber -= 1;
+        console.log(presentCardNumber);
+        displayCards(cardsArr,presentCardNumber);
+    }else{
+        return;
+    }
+}
+
+
+
+fetchData.addEventListener('click',(e)=>{
     useData();
     score = 0;
-    // createQuestions();
 });
 
  

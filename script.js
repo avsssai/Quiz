@@ -174,6 +174,7 @@ function createCard (question,answers,correct_answer) {
 fetchData.addEventListener('click',(e)=>{
 
     useData();
+    score = 0;
     // createQuestions();
 });
 

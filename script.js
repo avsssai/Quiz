@@ -66,6 +66,8 @@ if(cards.children.length > 0){
 }
   try {
     let dataFetch = await fetch(`https://opentdb.com/api.php?amount=${numberOfQuestions}&category=${category}&difficulty=${difficultyOfQuestions}`);
+    let api = `https://opentdb.com/api.php?amount=${numberOfQuestions}&category=${category}&difficulty=${difficultyOfQuestions}`;
+    console.log(api);
     let json = await dataFetch.json();
     return json;
   } catch (error) {
@@ -74,13 +76,11 @@ if(cards.children.length > 0){
 }
 
 async function useData() {
-    
     let difficultyOfQuestions = getRadioValue('difficulty');
     let numberOfQ = getRadioValue('number');
     let categoryOfQuestions = category.options[category.selectedIndex].value;
     let data = await getData(difficultyOfQuestions,numberOfQ,categoryOfQuestions);
     let quiz = new Quiz(data);
-
     let scoreDiv = document.getElementById('score');
     scoreDiv.innerText = `Score : ${score}/${getRadioValue('number')}`;
 
@@ -98,8 +98,8 @@ async function useData() {
         child.setAttribute('onclick',attribute);
         parent.appendChild(child);
     }
-    elementCreator(previousNextDiv,'previous-div','< last',"previousCard()");
-    elementCreator(previousNextDiv,'next-div','> next',"nextCard()");
+    elementCreator(previousNextDiv,'previous-div','< Last',"previousCard()");
+    elementCreator(previousNextDiv,'next-div','Next >',"nextCard()");
 
 
     if(quiz && quiz.data.results.length > 0){
@@ -107,8 +107,8 @@ async function useData() {
     }
     console.log(difficultyOfQuestions,numberOfQ,categoryOfQuestions);
 
-    quiz.questionSets.forEach(set => {
-        createCard(set.question,set.allAnswers,set.correct_answer);
+    quiz.questionSets.forEach((set,index) => {
+        createCard(set.question,set.allAnswers,set.correct_answer,index);
     });
     displayCards(cardsArr,presentCardNumber);
     console.log(quiz);
@@ -134,17 +134,12 @@ function scoreIncrease() {
 }
 
 
-function createCard (question,answers,correct_answer) {
+function createCard (question,answers,correct_answer,index) {
     let card = document.createElement('div');
     card.className = 'card';
-
     let questionDiv = document.createElement('div');
     questionDiv.className = 'question';
-
-    // let questionText = document.createTextNode(question);
-    // questionDiv.appendChild(questionText);
-
-    questionDiv.innerHTML = question;
+    questionDiv.innerHTML = (index+1) + '. ' + question;
 
     let answersDiv = document.createElement('div');
     answersDiv.className = "answers";
@@ -191,6 +186,7 @@ function createCard (question,answers,correct_answer) {
     card.appendChild(answersDiv);
     // let cards = document.getElementById('cards');
     // cards.appendChild(card);
+
     cardsArr.push(card);
     // console.log(cardsArr);
     // displayCards(cardsArr);
@@ -229,6 +225,8 @@ let previousCard = () => {
 fetchData.addEventListener('click',(e)=>{
     useData();
     score = 0;
+    cardsArr = [];
+    presentCardNumber = 0;
 });
 
  

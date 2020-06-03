@@ -1,32 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Quiz App</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <h1>Trivia app</h1>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header id="header">
+      <div class="logo">Logo</div>
+      <div class="title">Trivia</div>
+      <div class="github">GitHub</div>
+    </header>
     
+    <div id="options">
+      <section id="number">
+        <div id="number-of-questions">
+          <label for="questions-amount">Number of questions : </label>
 
-    <div id="number-of-questions">
-        <label for="questions-amount">Number of questions : </label>
+          <input type="radio" value="10" name="number" checked />
+          <label for="10">10</label>
 
-        <input type="radio" value="10" name="number" checked>
-        <label for="10">10</label>
-    
-        <input type="radio" value="15" name="number">
-        <label for="15">15</label>
-    
-        <input type="radio" value="20" name="number">
-        <label for="20">20</label>
-    
-    </div>
+          <input type="radio" value="15" name="number" />
+          <label for="15">15</label>
 
-    <div class="select">
-        <!-- <span>Category : </span> -->
-        <select name="category" id="category">
+          <input type="radio" value="20" name="number" />
+          <label for="20">20</label>
+        </div>
+      </section>
+
+      <section id="select">
+        <div class="select">
+          <!-- <span>Category : </span> -->
+          <select name="category" id="category" style="color: white;">
             <option value="" selected disabled hidden>Any Category</option>
             <option value="9">General Knowledge</option>
             <option value="10">Entertainment : Books</option>
@@ -52,39 +58,46 @@
             <option value="30">Science : Gadgets</option>
             <option value="32">Entertainment : Japanese Anime and Manga</option>
             <option value="31">Entertainment : Cartoon & Animations</option>
+          </select>
+        </div>
+      </section>
 
+      <section id="difficulty-wrapper">
+        <div id="difficulty">
+          <label for="diffuculty">Difficulty : </label>
+          <input type="radio" value="easy" name="difficulty" checked />
+          <label for="easy">Easy</label>
 
-        </select>
+          <input type="radio" value="medium" name="difficulty" />
+          <label for="medium">Medium</label>
+
+          <input type="radio" value="hard" name="difficulty" />
+          <label for="hard">Hard</label>
+
+          <input type="radio" value="" name="difficulty" />
+          <label for="hard">Any</label>
+        </div>
+      </section>
     </div>
-
-   
-    <div id="difficulty">
-        <label for="diffuculty">Difficulty : </label>
-        <input type="radio" value="easy" name='difficulty' checked>
-        <label for="easy">Easy</label>
     
-        <input type="radio" value="medium" name='difficulty'>
-        <label for="medium">Medium</label>
-    
-        <input type="radio" value="hard" name='difficulty'>
-        <label for="hard">Hard</label>
-
-        <input type="radio" value="" name='difficulty'>
-        <label for="hard">Any</label>
-
-    </div>
-    <button>
-        New Game
-    </button>
 
     <div id="game">
-        <div id="score"></div>
-        <button onclick="previousCard()">left</button>
-        <button onclick="nextCard()">right</button>
-        <div id="cards">    
-        </div>
+      <div id="score"></div>
+      
+      <div id="cards"></div>
+      <div id="previous-next">
         
+      </div>
+      <!-- <button onclick="previousCard()">left</button>
+      <button onclick="nextCard()">right</button> -->
+
     </div>
+    <section id="new-game-button">
+
+      <div id="new-game">
+        New Game
+      </div>
+  </section>
     <script src="script.js"></script>
-</body>
+  </body>
 </html>

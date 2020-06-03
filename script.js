@@ -84,6 +84,24 @@ async function useData() {
     let scoreDiv = document.getElementById('score');
     scoreDiv.innerText = `Score : ${score}/${getRadioValue('number')}`;
 
+    let previousNextDiv = document.getElementById('previous-next');
+    if(document.querySelector(".previous-div") || document.querySelector(".next-div")){
+        previousNextDiv.removeChild(document.querySelector('.previous-div'));
+        previousNextDiv.removeChild(document.querySelector('.next-div'));
+    }
+
+    //the dom remove and render is fast and the removal of the next and previous buttons is not visible
+    let elementCreator = (parent,className,innerText,attribute) => {
+        let child = document.createElement('div');
+        child.className = className;
+        child.innerText = innerText
+        child.setAttribute('onclick',attribute);
+        parent.appendChild(child);
+    }
+    elementCreator(previousNextDiv,'previous-div','< last',"previousCard()");
+    elementCreator(previousNextDiv,'next-div','> next',"nextCard()");
+
+
     if(quiz && quiz.data.results.length > 0){
         quiz.clear();
     }
@@ -97,7 +115,7 @@ async function useData() {
 }
 
 
-let fetchData = document.querySelector('button');
+let fetchData = document.getElementById('new-game');
 let game = document.getElementById('game');
 
 function getRadioValue (name){
@@ -150,12 +168,12 @@ function createCard (question,answers,correct_answer) {
                 scoreIncrease();
             }else if(e.target.innerHTML !== correct_answer) {
                 console.log('picked wrong answer');
-                e.target.style.backgroundColor = "red";
+                e.target.style.backgroundColor = "#FF5C5C";
                 answersDiv.removeEventListener('click',checkCorrectAnswer);
                 let elements = answersDiv.getElementsByClassName("answer");
                 Array.from(elements).forEach(el => {
                     if(el.innerHTML === correct_answer){
-                        el.style.backgroundColor = "green";
+                        el.style.backgroundColor = "#03C03C";
                     }
                     
                 })

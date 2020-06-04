@@ -22,9 +22,11 @@ header > .logo {
   height: 20px;
   width: 20px;
   background-color: #fbb41a;
+  cursor: pointer;
   color: #143d59;
   font-weight: bolder;
   text-align: center;
+
 }
 header > .github {
   margin-right: 2vw;

@@ -28,6 +28,7 @@ header > .logo {
 }
 header > .github {
   margin-right: 2vw;
+  vertical-align: baseline;
 }
 header > .title {
   font-family: 'Molle', cursive;

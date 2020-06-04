@@ -238,7 +238,7 @@ select {
   margin: 20px;
 }
 
-@media (max-width: 500px) {
+@media (max-width: 550px) {
   header {
     height: 5vh;
     width: 100%;
@@ -387,7 +387,7 @@ select {
   }
 
   .answers {
-    /* display: flex; */
+    display: flex;
     flex-wrap: wrap;
     overflow: auto;
     /* justify-content: space-around; */

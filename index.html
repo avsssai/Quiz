@@ -3,31 +3,40 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Quiz App</title>
+    <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png">
+
+    <title>Trivia</title>
     <link rel="stylesheet" href="style.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap"
+      rel="stylesheet"
+    />
+    <a href="">
+    <link href="https://fonts.googleapis.com/css2?family=Molle:ital@1&display=swap" rel="stylesheet">
+
+    </a>
 
   </head>
   <body>
     <header id="header">
-      <div class="logo">Logo</div>
+      <div class="logo">&#63;</div>
       <div class="title">Trivia</div>
-      <div class="github">GitHub</div>
+      <img src="./GitHub_Logo_White.png" height="20px" width="50px" class="github">
     </header>
-    
+
     <div id="options">
       <section id="number">
         <div id="number-of-questions">
           <label for="questions-amount">Number of questions : </label>
 
-          <input type="radio" value="10" name="number" checked />
-          <label for="10">10</label>
+          <label for="10">
+            <input type="radio" value="10" name="number" checked  id="10"/>10</label>
 
-          <input type="radio" value="15" name="number" />
-          <label for="15">15</label>
+          <label for="15">
+            <input type="radio" value="15" name="number" id="15" />15</label>
 
-          <input type="radio" value="20" name="number" />
-          <label for="20">20</label>
+          <label for="20">
+            <input type="radio" value="20" name="number" id="20" />20</label>
         </div>
       </section>
 
@@ -68,39 +77,33 @@
       <section id="difficulty-wrapper">
         <div id="difficulty">
           <label for="diffuculty">Difficulty : </label>
-          <input type="radio" value="easy" name="difficulty" checked />
-          <label for="easy">Easy</label>
+          <label for="easy">
+            <input type="radio" value="easy" name="difficulty" checked id="easy" />Easy</label>
 
-          <input type="radio" value="medium" name="difficulty" />
-          <label for="medium">Medium</label>
+          <label for="medium">
+            <input type="radio" value="medium" name="difficulty" id="medium"/>Medium</label>
 
-          <input type="radio" value="hard" name="difficulty" />
-          <label for="hard">Hard</label>
+          <label for="hard"><input type="radio" value="hard" name="difficulty" id="hard" />Hard</label>
 
-          <input type="radio" value="" name="difficulty" />
-          <label for="hard">Any</label>
+          <label for="any">
+            <input type="radio" value="" name="difficulty" id="any" />Any</label>
         </div>
       </section>
     </div>
-    
 
     <div id="game">
       <div id="score"></div>
-      
+
       <div id="cards"></div>
-      <div id="previous-next">
-        
-      </div>
+      <div id="previous-next"></div>
       <!-- <button onclick="previousCard()">left</button>
       <button onclick="nextCard()">right</button> -->
-
     </div>
     <section id="new-game-button">
-
       <div id="new-game">
         New Game
       </div>
-  </section>
+    </section>
     <script src="script.js"></script>
   </body>
 </html>

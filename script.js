@@ -111,6 +111,8 @@ async function useData() {
         createCard(set.question,set.allAnswers,set.correct_answer,index);
     });
     displayCards(cardsArr,presentCardNumber);
+    window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })
+
     console.log(quiz);
 }
 
@@ -227,6 +229,7 @@ fetchData.addEventListener('click',(e)=>{
     score = 0;
     cardsArr = [];
     presentCardNumber = 0;
+
 });
 
  

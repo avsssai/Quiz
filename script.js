@@ -18,12 +18,12 @@ class Quiz {
             this.questionSets = questionSets;
         })
     };
-    choseIncorrectly() {
-        this.score = this.score - 1;
-    }
-    choseCorrectly() {
-        this.score = this.score + 1;
-    };
+    // choseIncorrectly() {
+    //     this.score = this.score - 1;
+    // }
+    // choseCorrectly() {
+    //     this.score = this.score + 1;
+    // };
     newGame() {
         this.end = true;
         this.round = 0;
@@ -41,9 +41,11 @@ class Quiz {
     clear (){
         this.data = {};
     }
-    updateScore(){
-        console.log(this.score);
-    }
+    // updateScore(){
+    //     console.log("fired");
+        
+    //     console.log(this.score);
+    // }
     
 }   
 
@@ -67,7 +69,7 @@ if(cards.children.length > 0){
   try {
     let dataFetch = await fetch(`https://opentdb.com/api.php?amount=${numberOfQuestions}&category=${category}&difficulty=${difficultyOfQuestions}`);
     let api = `https://opentdb.com/api.php?amount=${numberOfQuestions}&category=${category}&difficulty=${difficultyOfQuestions}`;
-    console.log(api);
+    // console.log(api);
     let json = await dataFetch.json();
     return json;
   } catch (error) {
@@ -105,7 +107,7 @@ async function useData() {
     if(quiz && quiz.data.results.length > 0){
         quiz.clear();
     }
-    console.log(difficultyOfQuestions,numberOfQ,categoryOfQuestions);
+    // console.log(difficultyOfQuestions,numberOfQ,categoryOfQuestions);
 
     quiz.questionSets.forEach((set,index) => {
         createCard(set.question,set.allAnswers,set.correct_answer,index);
@@ -113,7 +115,7 @@ async function useData() {
     displayCards(cardsArr,presentCardNumber);
     window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })
 
-    console.log(quiz);
+    // console.log(quiz);
 }
 
 
@@ -158,16 +160,21 @@ function createCard (question,answers,correct_answer,index) {
     
     let checkCorrectAnswer =  (e)=>{
         if(e.target.className ==='answer'){
+
             if(e.target.innerHTML === correct_answer){
-                console.log('picked correct answer',answersDiv);
-                e.target.style.backgroundColor = "green";
+
+                // console.log('picked correct answer',answersDiv);
+                e.target.style.backgroundColor = "#03C03C";
                 answersDiv.removeEventListener('click',checkCorrectAnswer);
                 scoreIncrease();
+                
             }else if(e.target.innerHTML !== correct_answer) {
-                console.log('picked wrong answer');
+
+                // console.log('picked wrong answer');
                 e.target.style.backgroundColor = "#FF5C5C";
                 answersDiv.removeEventListener('click',checkCorrectAnswer);
                 let elements = answersDiv.getElementsByClassName("answer");
+
                 Array.from(elements).forEach(el => {
                     if(el.innerHTML === correct_answer){
                         el.style.backgroundColor = "#03C03C";
@@ -197,14 +204,14 @@ function createCard (question,answers,correct_answer,index) {
 let displayCards = (cardsArr,presentCardNumber) => {
     let cardToDisplay = cardsArr[presentCardNumber];
     cards.appendChild(cardToDisplay);
-    console.log(cardsArr);
+    // console.log(cardsArr);
 };
 
 let nextCard = () => {
     if(presentCardNumber < cardsArr.length - 1){
         cards.removeChild(cardsArr[presentCardNumber]);
         presentCardNumber += 1;
-        console.log(presentCardNumber);
+        // console.log(presentCardNumber);
         displayCards(cardsArr,presentCardNumber);
     }else{
         return;
@@ -215,7 +222,7 @@ let previousCard = () => {
     if(presentCardNumber > 0){
         cards.removeChild(cardsArr[presentCardNumber]);
         presentCardNumber -= 1;
-        console.log(presentCardNumber);
+        // console.log(presentCardNumber);
         displayCards(cardsArr,presentCardNumber);
     }else{
         return;

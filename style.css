@@ -1,6 +1,12 @@
 body {
   background-color: #fbb41a;
   font-family: "Open Sans", sans-serif;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 header {
   display: flex;
@@ -26,15 +32,13 @@ header > .logo {
   color: #143d59;
   font-weight: bolder;
   text-align: center;
-
 }
 header > .github {
   margin-right: 2vw;
   vertical-align: baseline;
 }
 header > .title {
-  font-family: 'Molle', cursive;
-
+  font-family: "Molle", cursive;
 }
 #options {
   display: flex;
@@ -171,6 +175,8 @@ select {
   align-items: center;
   text-align: center;
   justify-content: center;
+  cursor: pointer;
+
 }
 
 .answer:hover {
@@ -179,7 +185,7 @@ select {
 }
 
 .answers {
-  display: inline-flex;
+  display: flex;
   flex-wrap: wrap;
   overflow: auto;
   justify-content: space-around;
@@ -261,9 +267,9 @@ select {
     justify-content: center;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
     border-radius: 10px;
-    transition: all 0.5s ease;
+    /* transition: all 0.5s ease;
     background-color: #143d59;
-    color: white;
+    color: white; */
   }
   #difficulty-wrapper {
     font-size: 15px;
@@ -277,8 +283,8 @@ select {
     box-shadow: 0 0px 0px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
     border-radius: 10px;
     transition: all 1s ease;
-    background-color: #143d59;
-    color: white;
+    /* background-color: #143d59;
+    color: white; */
     margin: 10px 0;
   }
 
@@ -296,12 +302,12 @@ select {
     width: 350px;
 
     box-shadow: none;
-    color: white;
+    /* color: white; */
 
     /* border: 0 !important; */
-    background-color: #143d59;
+    /* background-color: #143d59;
     background-image: none;
-    border: 1px solid white;
+    border: 1px solid white; */
     border-radius: 10px;
   }
   /* Remove IE arrow */
@@ -315,7 +321,7 @@ select {
     width: 20em;
     height: 3em;
     line-height: 3;
-    background: #2c3e50;
+    /* background: #2c3e50; */
     overflow: hidden;
     border-radius: 0.25em;
   }

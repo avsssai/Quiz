@@ -17,6 +17,7 @@
     align-items: center;
     text-align: center;
     background-color: rosybrown;
+    border-radius: 10px;
 }
 .score,.category,.difficulty{
     flex: 1;
@@ -101,4 +102,12 @@
 .question-number {
     font-size: 32px;
     margin-right: 12px;
+}
+
+.active {
+    color: blue;
+}
+
+#answer{
+    width: 60%;
 }

@@ -4,8 +4,8 @@ import Answers from './Answers/Answers';
 
 class Game extends Component {
     state = {
-        loadingAnswers:true
-    }
+        loadingAnswers:true   
+     }
     capitalizeFirstLetter(string) {
         return string.charAt(0).toUpperCase() + string.slice(1);
       }
@@ -22,16 +22,24 @@ class Game extends Component {
         }
         console.log(i);
         let questionNumber = this.props.questionNumber;
-        this.props.selectedOption(questionSet,questionNumber);        
+        // this.setState({selected:i})
+        this.props.selectedOption(questionSet,questionNumber);  
+        this.props.recordSelected(questionNumber,i);     
     }
     
 
     render () {
-        let { data, questionNumber, nextQuestion, prevQuestion } = this.props;
+        let { data, questionNumber, nextQuestion, prevQuestion, selected } = this.props;
         let question = data.question;
         let category = data.category;
         let difficulty = data.difficulty;
         let answers = data.shuffledAnswers;
+        let selectedAns;
+        if(selected[questionNumber] || selected[questionNumber] === 0){
+            selectedAns = selected[questionNumber]
+        }else{
+            selectedAns = '';
+        }
         return (
             <div className="Game">
                 <div className="stats">
@@ -58,7 +66,7 @@ class Game extends Component {
 
                         </div>
                         <div className="answers-field">
-                            <Answers answers={answers}  selectedAnswer={this.selectedAnswer}/>
+                            <Answers answers={answers}  selectedAnswer={this.selectedAnswer} selected={selectedAns} questionNumber={questionNumber} />
                         </div>
                     </div>
                     <div className="nextQuestion" onClick={nextQuestion}>next</div>

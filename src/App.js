@@ -18,20 +18,33 @@ class App extends Component {
     };
   }
   componentDidMount () {
-    fetch('https://opentdb.com/api.php?amount=10')
+    let category = this.props.chosenCategory[0].number;
+    let difficulty = this.props.chosenDifficulty[0].category;
+    // fetch(`https://opentdb.com/api.php?amount=10&category=${category}&difficulty=${difficulty}`)
+
+    let url =     `https://opentdb.com/api.php?amount=10&category=${category}&difficulty=${difficulty}`;
+
+    fetch(    url    )
       .then(res => res.json())
       .then(result => {
-        this.setState({
-          isLoaded: true,
-          data: result.results
-        })
+        
+          this.setState({
+            isLoaded: true,
+            data: result.results
+          })
+
+        
+        
+        
       }
         ,
         (error) => {
           this.setState({
-            isLoaded: true,
+            isLoaded: false,
             error
           })
+          console.error('Error');
+          
         })
       .then(() => {
         let clone = [...this.state.data];
@@ -65,6 +78,10 @@ class App extends Component {
           clone[i].shuffledAnswers = shuffledAnswers
         })
         this.setState({ data: clone })
+      })
+      .then(()=>{
+        console.log(this.props.chosenCategory[0].number)
+        console.log(this.props.chosenDifficulty[0].category);
       })
   }
 

@@ -1,0 +1,20 @@
+* {
+    text-align: center;
+}
+.choice{
+    width: 80vw;
+    display: flex;
+    justify-content: center;
+    margin: 10vh auto;
+    
+}
+
+.category-choice,.difficulty-choice{
+    width: 40vw;
+}
+
+.barricade {
+    border: 1px solid black;
+    
+    height: 60vh;
+}

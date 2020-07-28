@@ -14,16 +14,19 @@ class App extends Component {
       data: [],
       questionNumber: 0,
       selectedOptions: Array(10).fill(null),
-      selectedAnswer:Array(10).fill(null)
+      selectedAnswer:Array(10).fill(null),
+      selectedCategory: this.props.chosenCategory,
+      selectedDifficulty: this.props.chosenDifficulty
     };
   }
   componentDidMount () {
-    let category = this.props.chosenCategory[0].number;
-    let difficulty = this.props.chosenDifficulty[0].category;
-    // fetch(`https://opentdb.com/api.php?amount=10&category=${category}&difficulty=${difficulty}`)
-
+    let category = this.state.selectedCategory[0].number;
+    let difficulty = this.state.selectedDifficulty[0].namespace;
+    
     let url =     `https://opentdb.com/api.php?amount=10&category=${category}&difficulty=${difficulty}`;
-
+    console.log(url);
+    
+    // fetch(`https://opentdb.com/api.php?amount=10&category=23&difficulty=easy`)
     fetch(    url    )
       .then(res => res.json())
       .then(result => {

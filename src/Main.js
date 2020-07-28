@@ -61,24 +61,27 @@ class Main extends Component {
         {
           id: 0,
           category: "Any",
-          url:Any
+          url:Any,
+          namespace:""
         },
         {
           id: 1,
           category: "Easy",
-          
-          url:Easy
+          url:Easy,
+          namespace:"easy"
         },
         {
           id: 2,
           category: "Medium",
-          url:Medium
+          url:Medium,
+          namespace:"medium"
             // "https://image.freepik.com/free-photo/portrait-delivery-man-carrying-packages_23-2148590734.jpg",
         },
         {
           id: 3,
           category: "Hard",
-          url:Hard
+          url:Hard,
+          namespace:"hard"
             // "https://image.freepik.com/free-photo/front-view-businessman-holding-high-tech-tablet_23-2148598110.jpg",
         }
         

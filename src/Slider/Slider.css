@@ -1,5 +1,5 @@
 h3 {
-    color: black;
+    color: black !important;
 }
 
 
@@ -13,4 +13,8 @@ img{
 .carousel-control-next,
 .carousel-control-prev {
     filter: invert(100%);
+}
+
+.carousel-caption{
+    color: black;
 }

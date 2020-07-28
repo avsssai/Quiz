@@ -24,7 +24,7 @@ class Slider extends Component {
 
     let mapper = (el) => {
       return (
-        <Carousel.Item>
+        <Carousel.Item key={el.id}>
           
         <div className="svg-image">
 

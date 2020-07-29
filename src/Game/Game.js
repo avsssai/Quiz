@@ -24,7 +24,8 @@ class Game extends Component {
         let questionNumber = this.props.questionNumber;
         // this.setState({selected:i})
         this.props.selectedOption(questionSet,questionNumber);  
-        this.props.recordSelected(questionNumber,i);     
+        this.props.recordSelected(questionNumber,i);  
+        this.props.nextQuestion();   
     }
     
 

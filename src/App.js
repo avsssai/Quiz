@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Header from './Header/Header';
 import Game from './Game/Game';
 import Loader from './Loader/Loader';
-
+import {Link} from 'react-router-dom';
 import './App.css';
 
 class App extends Component {
@@ -118,9 +118,15 @@ class App extends Component {
     })
   }
 
+  endGame = () => {
+    this.props.endGame(this.state.selectedOptions,this.state.data);
+  }
+
   render () {
     let { data, questionNumber } = this.state;
     let currentQuestion, display;
+    let gameEndButton = this.state.questionNumber === 9 ? <button onClick={this.endGame}>End Game</button> : "";
+
     if (this.state.isLoaded) {
       currentQuestion = data[questionNumber];
       display = (
@@ -142,6 +148,11 @@ class App extends Component {
       <div className="App">
         <Header></Header>
         {display}
+        <Link to={{
+          pathname:'/results',
+          state:{questionSet:this.state.questionSet}
+        }}>        {gameEndButton}
+</Link>
       </div>
     )
   }

@@ -8,6 +8,7 @@ import {
 
 import App from './App';
 import Home from './Home/Home';
+import Results from './Results/Results';
 
 //categories
 import gk from './categories/undraw_questions_75e0.svg';
@@ -35,7 +36,9 @@ class Main extends Component {
         super(props);
         this.state = {
             category:0,
-            difficulty:0
+            difficulty:0,
+            selectedAnswers:Array(10).fill(null),
+            questionSets:Array(10).fill(null)
         }
     }
     currentCategory = (option) => {
@@ -56,6 +59,16 @@ class Main extends Component {
       })
       return choice;
     }
+    endGame = (selectedAnswers,questionSets) => {
+        this.setState({
+            selectedAnswers,
+            questionSets
+        })
+        // console.log(data2);
+        console.log('fired');
+        
+      }
+
     render(){
       let difficulty = [
         {
@@ -114,6 +127,7 @@ class Main extends Component {
           url:Politics
         },
       ];
+
       
      
       
@@ -128,7 +142,8 @@ class Main extends Component {
                     <Link to="/app">App</Link>
                   </li>
                   <li>
-                    <Link to="/dashboard">Dashboard</Link>
+                    <Link to={{pathname:"/results"
+                    }}>Results</Link>
                   </li>
                 </ul>
         
@@ -146,10 +161,12 @@ class Main extends Component {
                     <Home options={options} difficulty={difficulty} currentCategory={this.currentCategory} currentDifficulty={this.currentDifficulty}/>
                   </Route>
                   <Route path="/app">
-                    <App chosenCategory={this.categoryPasser(options,this.state.category)} chosenDifficulty={this.categoryPasser(difficulty,this.state.difficulty)}/>
+                    <App chosenCategory={this.categoryPasser(options,this.state.category)} chosenDifficulty={this.categoryPasser(difficulty,this.state.difficulty)}
+                        endGame={this.endGame}
+                    />
                   </Route>
-                  <Route path="/dashboard">
-                    <Dashboard />
+                  <Route path="/results">
+                    <Results questionSets={this.state.questionSets} selectedAnswers={this.state.selectedAnswers}/>
                   </Route>
                 </Switch>
               </div>
@@ -165,12 +182,5 @@ class Main extends Component {
 
 
 
-function Dashboard() {
-  return (
-    <div>
-      <h2>Dashboard</h2>
-    </div>
-  );
-}
 
 export default Main;

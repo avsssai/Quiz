@@ -1,0 +1,24 @@
+.result-card {
+    margin: 2vh auto;
+    text-align: start !important;
+}
+
+.subtexts {
+    display: flex;
+    justify-content: space-between;
+}
+
+.answer-card{
+    margin: 2px;
+}
+
+.correct {
+    background-color: chartreuse;
+}
+.wrongSelection {
+    background-color: coral;
+}
+
+.unAnsweredQuestion{
+    background-color: gray;
+}

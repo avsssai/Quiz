@@ -4,7 +4,8 @@ import Answer from './Answer/Answer';
 
 class Answers extends Component {
     selectedAnswer = (i) => {
-        this.props.selectedAnswer(i)
+        this.props.selectedAnswer(i);
+        
     }
     render() {
         let {answers,selected,questionNumber} = this.props;

@@ -28,7 +28,7 @@ class Slider extends Component {
           
         <div className="svg-image">
 
-            <img className="d-block w-40 justify-content-md-center" id="svg-image" src={el.url} alt="slide"  />
+            <img className="d-block justify-content-md-center" id="svg-image" src={el.url} alt="slide"  />
         </div>
         
           <Carousel.Caption>

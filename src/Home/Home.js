@@ -33,7 +33,7 @@ class Home extends Component {
         </div>
         <h4>Start new game</h4>
         <Link to='/app'>
-          <button >New Game!</button>
+          <button className='new-game-button'>New Game!</button>
         </Link>
       </div>
     );

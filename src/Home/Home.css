@@ -1,3 +1,6 @@
+.home {
+    text-align: center;
+}
 .choice{
     width: 80vw;
     display: flex;
@@ -14,4 +17,17 @@
     border: 1px solid black;
     
     height: 60vh;
+}
+
+@media (max-width : 500px){
+    .choice{
+        width: 100%;
+    }
+    /* .category-choice{
+        width: 45vw;
+        margin: 0 auto;
+    } */
+    .new-game-button{
+        margin: 2vh;
+    }
 }

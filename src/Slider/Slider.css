@@ -1,14 +1,29 @@
 h3 {
     color: black !important;
+    font-size: 2vw;
+
+}
+
+.carousel-item{
+    margin: 0 auto;
 }
 
 
 img{
-   transform: scale(0.8);
+   /* transform: scale(0.8);
    width:70%;
    height: auto;
-   margin: 0 auto;
+   margin: 0 auto; */
+   display: block;
+   width: auto;
+   height: auto;
+   min-width: 50%;
+   max-width: 50%;
+   max-height: 90%;
+   margin: 10vh auto;
+ 
 }
+
 
 .carousel-control-next,
 .carousel-control-prev {
@@ -17,4 +32,42 @@ img{
 
 .carousel-caption{
     color: black;
+}
+
+.carousel-caption h3 {
+    font-size: 2vw;
+}
+
+@media (max-width : 500px){
+    img{
+        min-width: 55%;
+        max-width: 80%;
+    }
+    .carousel{
+        width: 45vw;
+        margin: 0 auto;
+    }
+    .category-choice{
+
+        width: 45vw;
+    }
+    .choice{
+        height: 50vh;
+        margin: 8vh auto;
+        padding-top: 2vh;
+    }
+    span.carousel-control-next-icon, span.carousel-control-prev-icon{
+        width: 10px;
+    }
+    .difficulty-choice , .category-choice{
+        width: auto;
+    }
+    .barricade{
+        height: 45vh;
+        opacity: 0.5;
+    }
+    .carousel-caption h3{
+        font-size: 3vw;
+    }
+
 }

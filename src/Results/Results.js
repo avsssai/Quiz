@@ -1,17 +1,53 @@
 import React, { Component } from "react";
 import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button';
+import Collapse from 'react-bootstrap/Collapse';
 import './Results.css';
 
 class Results extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            open: false
+        }
+    }
     capitalize = (string) => {
         return string.charAt(0).toUpperCase() + string.slice(1);
     }
+    toggleAnswers = () => {
+        this.setState({
+            open: !this.state.open
+        })
+    }
+    
     render () {
+        function options (number) {
+            let res;
+            switch (number) {
+                case 0:
+                    res = 'A';
+                    break;
+                case 1:
+                    res = 'B';
+                    break;
+                case 2:
+                    res = 'C';
+                    break;
+                case 3:
+                    res = 'D';
+                    break;
+                default:
+                    res = '';
+    
+            }
+            return res;
+        }
         console.log(this.props.questionSets);
         let selectedAnswers = this.props.selectedAnswers;
         console.log(selectedAnswers);
 
         let answeredQuestions = selectedAnswers.filter(el => el !== null);
+        let displayState = this.state.open ? "Hide" : "Show";
 
         let score = answeredQuestions.reduce((acc, el) => {
             if (el.selectedAnswer === el.correct_answer) {
@@ -47,7 +83,7 @@ class Results extends Component {
 
                 return (
                     <Card key={i} className={`answer-card ${customClass} ${selectedClass} ${unAnsweredQuestion} `}>
-                        <Card.Body>{el}</Card.Body>
+                        <Card.Body>{options(i)}) <span dangerouslySetInnerHTML={{__html:el}}></span></Card.Body>
                     </Card>
 
                 )
@@ -55,7 +91,7 @@ class Results extends Component {
             return (
                 <Card style={{ width: '80vw' }} key={i} className='result-card'>
                     <Card.Body>
-                        <Card.Title>{i + 1}. {el.question}</Card.Title>
+                        <Card.Title>{i + 1}. <span dangerouslySetInnerHTML={{__html:el.question}}></span></Card.Title>
                         <div className="subtexts">
 
                             <Card.Subtitle className="mb-2 text-muted">{el.category}</Card.Subtitle>
@@ -73,13 +109,35 @@ class Results extends Component {
         })
         return (
             <div>
-                <h1>Results Page</h1>
+                <h1 className='results-heading'>Results Page</h1>
+
                 <div>
-                    <div className="score">
-                        {score}/10
+                    <div className="final-score">
+                        <h2>Score</h2>
+                        <Card>
+                            <Card.Body>
+                                <span className="player-score">{score}</span> <span className="divider">/</span> <span className='total-score'>10</span>
+                            </Card.Body>
+                        </Card>
                     </div>
 
-                    {questions}
+                </div>
+                <div className="correct-answers">
+                    <div className="result-page-buttons">
+                    <Button onClick={() => this.toggleAnswers()} className='result-button'>
+                        {displayState} Answers!
+                    </Button>
+                    <Button className='result-button'>
+                        New Game
+                    </Button>
+
+                    </div>
+                    <Collapse in={this.state.open}>
+                        <div className="questions">
+                            {questions}
+                        </div>
+                    </Collapse>
+
                 </div>
             </div>
         )

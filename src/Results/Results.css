@@ -2,7 +2,40 @@
     margin: 2vh auto;
     text-align: start !important;
 }
+.results-heading{
+    text-align: center;
+}
 
+.final-score {
+    width: 80vw;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.player-score {
+    font-size: 5em;
+}
+.total-score, .divider{
+    font-size: 2em;
+}
+
+.correct-answers {
+    width: 80vw;
+    margin: 10vh auto;
+}
+
+.result-page-buttons {
+    display: flex;
+    width: auto;
+    margin: 0 auto;
+    justify-content: center;
+}
+
+.btn{
+    white-space: nowrap !important;
+    align-items: center;
+    margin: 10px;
+}
 .subtexts {
     display: flex;
     justify-content: space-between;
@@ -13,7 +46,7 @@
 }
 
 .correct {
-    background-color: chartreuse;
+    background-color: chartreuse !important;
 }
 .wrongSelection {
     background-color: coral;

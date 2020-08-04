@@ -1,18 +1,28 @@
-*{
-  padding: 0;
-  margin: 0;
-  /* border: 1px solid red; */
-
+* {
+	padding: 0;
+	margin: 0;
+	/* border: 1px solid red; */
 }
 
 .App {
-  text-align: center;
-  box-sizing: border-box;
-  background-color: #bae8e8;
-  height: 100vh;
-  width: 100vw;
-  font-family: 'Open Sans', sans-serif;
-  
+	box-sizing: border-box;
+	/* background-color: #0AFF9D; */
+	background-color: #232946;
+	height: 100vh;
+	width: 100vw;
+	font-family: "Open Sans", sans-serif;
 }
 
+.end-button {
+	display: flex;
+	width: 100vw;
+}
 
+.end-button > a {
+	margin: 0 auto;
+}
+
+ .btn-primary {
+	background-color: #b8c1ec !important;
+	color: #232946 !important;
+}
